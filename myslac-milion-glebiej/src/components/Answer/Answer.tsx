@@ -1,10 +1,11 @@
 import type React from "react";
 
 type Props = {
-    text: string;
+    text: string,
+    answerId: string
 };
 
-export const Response = ({ text }: Props) => {
+export const Answer = ({ text, answerId }: Props) => {
     const divStyle: React.CSSProperties = {
         border: "2px solid #483120",
         borderRadius: "10px",
@@ -26,10 +27,23 @@ export const Response = ({ text }: Props) => {
         lineHeight: "1.2",
         wordBreak: "break-word",
         margin: 0,
+        flex: 7
     };
+
+    const idStyle: React.CSSProperties = {
+        color: "#483120",
+        fontSize: "18px",
+        fontFamily: "Kalam, cursive, bold",
+        textAlign: "center",
+        lineHeight: "1.2",
+        wordBreak: "break-word",
+        margin: 0,
+        flex: 1
+    }
 
     return (
         <div style={divStyle}>
+            <span style={idStyle}>{answerId}</span>
             <span style={textStyle}>{text}</span>
         </div>
     );
