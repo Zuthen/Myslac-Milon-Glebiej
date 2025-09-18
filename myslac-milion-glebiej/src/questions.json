@@ -1,0 +1,210 @@
+[
+  {
+    "id": "6e83d947-a353-426e-b2e3-bfc1d0ec58a7",
+    "question": "Kaburę na co zwykle ma przy sobie PiTau?",
+    "level": [
+      4
+    ],
+    "answers": {
+      "A": {
+        "answer": "Butelkę po Tymbarku",
+        "correct": true
+      },
+      "B": {
+        "answer": "\"Fenomenologię ducha\" Hegla",
+        "correct": false
+      },
+      "C": {
+        "answer": "Latarkę pozycyjnę + komplet baterii",
+        "correct": false
+      },
+      "D": {
+        "answer": "Rolkę folii aluminiowej",
+        "correct": false
+      }
+    },
+    "why": ""
+  },
+  {
+    "id": "b54f03c7-3baa-413c-a4b7-d3860ed66581",
+    "question": "Pan N jest panem \"N\" ponieważ jest:",
+    "level": [
+      1
+    ],
+    "answers": {
+      "A": {
+        "answer": "Narratorem",
+        "correct": true
+      },
+      "B": {
+        "answer": "Numizmatykiem",
+        "correct": false
+      },
+      "C": {
+        "answer": "Nieheteronormatywny",
+        "correct": false
+      },
+      "D": {
+        "answer": "Niereformowalny",
+        "correct": false
+      }
+    },
+    "why": ""
+  },
+  {
+    "id": "703fb67e-823a-45ce-bfdb-84bda3d740fe",
+    "question": "Chronologicznie najnowszą osobą moderatorską jest:",
+    "level": [
+      3
+    ],
+    "answers": {
+      "A": {
+        "answer": "Kotra",
+        "correct": true
+      },
+      "B": {
+        "answer": "PiTau",
+        "correct": false
+      },
+      "C": {
+        "answer": "Barnaba",
+        "correct": false
+      },
+      "D": {
+        "answer": "Uther",
+        "correct": false
+      }
+    },
+    "why": ""
+  },
+  {
+    "id": "e9a14383-258c-4c6c-8bcd-9a8f255b3f23",
+    "question": "\"#lobby-zbiorkomu-[...]\" była wcześniej kanałem:",
+    "level": [
+      5
+    ],
+    "answers": {
+      "A": {
+        "answer": "#general-2",
+        "correct": true
+      },
+      "B": {
+        "answer": "#lobby-samolotów",
+        "correct": false
+      },
+      "C": {
+        "answer": "#lubimy-samochody-spalinowe",
+        "correct": false
+      },
+      "D": {
+        "answer": "Nie była żadnym, kanał powstał intencjonalnie jako #lobby-zbiorkomu-[...]",
+        "correct": false
+      }
+    },
+    "why": ""
+  },
+  {
+    "id": "8f1b8109-f6c3-4c38-9d2f-d8379346e009",
+    "question": "O czym zwykle informuje Adam po obejrzanym filmie?",
+    "level": [
+      4
+    ],
+    "answers": {
+      "A": {
+        "answer": "Czy są szopy.",
+        "correct": true
+      },
+      "B": {
+        "answer": "Czy w filmie występuje nagość.",
+        "correct": false
+      },
+      "C": {
+        "answer": "Czy wspomniano w nim Marska.",
+        "correct": false
+      },
+      "D": {
+        "answer": "O niczym, Adam nie ogląda filmów.",
+        "correct": false
+      }
+    },
+    "why": ""
+  },
+  {
+    "id": "cf5513bf-23c4-4c64-8bee-646efbb75a28",
+    "question": "Kim lub czym jest wejder?",
+    "level": [
+      7
+    ],
+    "answers": {
+      "A": {
+        "answer": "Nikt tego do końca nie wie.",
+        "correct": true
+      },
+      "B": {
+        "answer": "Internetowym lewakiem.",
+        "correct": false
+      },
+      "C": {
+        "answer": "Modelem sztucznej inteligencji.",
+        "correct": false
+      },
+      "D": {
+        "answer": "Personifikacją internetowej dramy.",
+        "correct": false
+      }
+    },
+    "why": ""
+  },
+  {
+    "id": "58b634f7-7f80-47e8-ab26-8d98e7795b85",
+    "question": "Ile do tej pory było edycji klubu czytelniczego?",
+    "level": [
+      8
+    ],
+    "answers": {
+      "A": {
+        "answer": "Jedna.",
+        "correct": true
+      },
+      "B": {
+        "answer": "Dwie.",
+        "correct": false
+      },
+      "C": {
+        "answer": "Trzy.",
+        "correct": false
+      },
+      "D": {
+        "answer": "Żadnej.",
+        "correct": false
+      }
+    },
+    "why": ""
+  },
+  {
+    "id": "5c702be2-12c8-4f59-860e-f514ad84f681",
+    "question": "Iloma szopami w fartuchu jest osoba znana jako meh guy?",
+    "level": [
+      2
+    ],
+    "answers": {
+      "A": {
+        "answer": "Trzema.",
+        "correct": true
+      },
+      "B": {
+        "answer": "Czterema.",
+        "correct": false
+      },
+      "C": {
+        "answer": "Sześcioma.",
+        "correct": false
+      },
+      "D": {
+        "answer": "Dwoma.",
+        "correct": false
+      }
+    },
+    "why": ""
+  }
+]
