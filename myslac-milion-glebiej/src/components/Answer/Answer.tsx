@@ -1,11 +1,13 @@
 import type React from "react";
+import { type Answer as AnswerType } from "../QuestionAndAnswers/QuestionAndAnswers"
 
 type Props = {
-    text: string,
-    answerId: string
+    answerId: string,
+    answer: AnswerType
+    selectAnswer: (a: AnswerType) => void
 };
 
-export const Answer = ({ text, answerId }: Props) => {
+export const Answer = ({ answerId, answer, selectAnswer }: Props) => {
     const divStyle: React.CSSProperties = {
         border: "2px solid #483120",
         borderRadius: "10px",
@@ -21,6 +23,7 @@ export const Answer = ({ text, answerId }: Props) => {
 
     const textStyle: React.CSSProperties = {
         color: "#483120",
+        backgroundColor: "#DE9C75",
         fontSize: "14px",
         fontFamily: "Kalam, cursive",
         textAlign: "center",
@@ -32,6 +35,7 @@ export const Answer = ({ text, answerId }: Props) => {
 
     const idStyle: React.CSSProperties = {
         color: "#483120",
+        backgroundColor: "#DE9C75",
         fontSize: "18px",
         fontFamily: "Kalam, cursive, bold",
         textAlign: "center",
@@ -42,9 +46,9 @@ export const Answer = ({ text, answerId }: Props) => {
     }
 
     return (
-        <div style={divStyle}>
+        <button style={divStyle} onClick={() => selectAnswer(answer)}>
             <span style={idStyle}>{answerId}</span>
-            <span style={textStyle}>{text}</span>
-        </div>
+            <span style={textStyle}>{answer.answer}</span>
+        </button>
     );
 };

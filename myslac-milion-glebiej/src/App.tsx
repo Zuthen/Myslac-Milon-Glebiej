@@ -1,14 +1,12 @@
 import './App.css'
 import { QuestionAndAnswers } from './components/QuestionAndAnswers/QuestionAndAnswers'
-import questions from "./questions.json"
 
 
 function App() {
-  const testData = questions[3]
-
   return (
-    <QuestionAndAnswers question={testData} />
+    <QuestionAndAnswers />
   )
 }
 
 export default App
+
