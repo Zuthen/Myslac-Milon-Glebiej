@@ -1,17 +1,13 @@
 import './App.css'
 import { QuestionAndAnswers } from './components/QuestionAndAnswers/QuestionAndAnswers'
+import questions from "./questions.json"
 
 
 function App() {
-  const testData = {
-    question: "Iloma szopami w fartuchu jest osoba znana jako meh guy?",
-    answerA: "Trzema",
-    answerB: "Czterema",
-    answerC: "Sześcioma",
-    answerD: "Dwoma"
-  }
+  const testData = questions[3]
+
   return (
-    <QuestionAndAnswers question={testData.question} answerA={testData.answerA} answerB={testData.answerB} answerC={testData.answerC} answerD={testData.answerD} />
+    <QuestionAndAnswers question={testData} />
   )
 }
 
