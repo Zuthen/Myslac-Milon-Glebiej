@@ -5,7 +5,7 @@ import questions from "./questions.json"
 
 function App() {
   const testData = questions[3]
-
+  console.log("test")
   return (
     <QuestionAndAnswers question={testData} />
   )
