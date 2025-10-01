@@ -1,7 +1,10 @@
-import { Question } from "../Question/Question"
-import { Answer } from "../Answer/Answer"
+import { useState } from "react"
 import { useDispatch, useSelector } from "react-redux";
 import { goodAnswer, type RootState } from "../../gameManager";
+import { Question } from "../Question/Question"
+import { Answer } from "../Answer/Answer"
+import { SuccesPopup } from "../../Succes Popup/SuccesPopup";
+
 
 export type Answer = {
     answer: string,
@@ -28,10 +31,15 @@ export const QuestionAndAnswers = () => {
     const dispatch = useDispatch()
     const range = useSelector((state: RootState) => state.range);
     const questionData = useSelector((state: RootState) => state.currentQuestion)
+    const [succesVisible, setSuccessVisible] = useState(false)
 
     function checkAnswer(answer: Answer) {
-        answer.correct && dispatch(goodAnswer(range)) && console.log("goodAnswer")
+        if (answer.correct) {
+            dispatch(goodAnswer(range))
+            setSuccessVisible(true)
+        }
     }
+
 
     return <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
         <div style={{ flex: 1 }}>
@@ -43,6 +51,7 @@ export const QuestionAndAnswers = () => {
         </div>
         {
             questionData && <>
+                <SuccesPopup visible={succesVisible} goForward={() => setSuccessVisible(false)} />
                 <div style={{ flex: 1, flexDirection: "row", display: "flex", margin: "5px" }}>
                     <div style={{ flex: 1, margin: "8px" }}> <Answer answerId="A" answer={questionData.answers.A} selectAnswer={() => checkAnswer(questionData.answers.A)} /></div>
                     <div style={{ flex: 1, margin: "8px" }}> <Answer answer={questionData.answers.B} answerId="B" selectAnswer={() => checkAnswer(questionData.answers.B)} /></div>
