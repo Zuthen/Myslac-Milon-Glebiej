@@ -1,7 +1,9 @@
 import { Question } from "../Question/Question"
 import { Answer } from "../Answer/Answer"
+import { useDispatch, useSelector } from "react-redux";
+import { goodAnswer, type RootState } from "../../gameManager";
 
-type Answer = {
+export type Answer = {
     answer: string,
     correct: boolean
 }
@@ -12,7 +14,7 @@ type Answers = {
     D: Answer
 }
 
-type Question = {
+export type Question = {
     id: string,
     question: string,
     level: number[],
@@ -20,22 +22,36 @@ type Question = {
     why: string
 }
 
-type Props = {
-    question: Question
-}
 
-export const QuestionAndAnswers = ({ question }: Props) => {
+
+export const QuestionAndAnswers = () => {
+    const dispatch = useDispatch()
+    const range = useSelector((state: RootState) => state.range);
+    const questionData = useSelector((state: RootState) => state.currentQuestion)
+
+    function checkAnswer(answer: Answer) {
+        answer.correct && dispatch(goodAnswer(range)) && console.log("goodAnswer")
+    }
+
     return <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
         <div style={{ flex: 1 }}>
-            <Question text={question.question} />
+            {
+                questionData
+                    ? <Question text={questionData.question} />
+                    : "Nie ma takiego pytania"
+            }
         </div>
-        <div style={{ flex: 1, flexDirection: "row", display: "flex", margin: "5px" }}>
-            <div style={{ flex: 1, margin: "8px" }}> <Answer text={question.answers.A.answer} answerId="A" /></div>
-            <div style={{ flex: 1, margin: "8px" }}> <Answer text={question.answers.B.answer} answerId="B" /></div>
-        </div>
-        <div style={{ flex: 1, flexDirection: "row", display: "flex" }}>
-            <div style={{ flex: 1, margin: "8px" }}> <Answer text={question.answers.C.answer} answerId="C" /></div>
-            <div style={{ flex: 1, margin: "8px" }}> <Answer text={question.answers.D.answer} answerId="D" /></div>
-        </div>
+        {
+            questionData && <>
+                <div style={{ flex: 1, flexDirection: "row", display: "flex", margin: "5px" }}>
+                    <div style={{ flex: 1, margin: "8px" }}> <Answer answerId="A" answer={questionData.answers.A} selectAnswer={() => checkAnswer(questionData.answers.A)} /></div>
+                    <div style={{ flex: 1, margin: "8px" }}> <Answer answer={questionData.answers.B} answerId="B" selectAnswer={() => checkAnswer(questionData.answers.B)} /></div>
+                </div>
+                <div style={{ flex: 1, flexDirection: "row", display: "flex" }}>
+                    <div style={{ flex: 1, margin: "8px" }}> <Answer answer={questionData.answers.C} answerId="C" selectAnswer={() => checkAnswer(questionData.answers.C)} /></div>
+                    <div style={{ flex: 1, margin: "8px" }}> <Answer answer={questionData.answers.D} answerId="D" selectAnswer={() => checkAnswer(questionData.answers.D)} /></div>
+                </div>
+            </>
+        }
     </div>
 }
