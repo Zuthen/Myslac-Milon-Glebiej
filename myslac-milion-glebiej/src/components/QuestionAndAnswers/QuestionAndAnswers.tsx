@@ -1,7 +1,10 @@
+import { useState } from "react"
+import { useDispatch, useSelector } from "react-redux";
+import { goodAnswer, nextQuestion, type RootState } from "../../gameManager";
 import { Question } from "../Question/Question"
 import { Answer } from "../Answer/Answer"
-import { useDispatch, useSelector } from "react-redux";
-import { goodAnswer, type RootState } from "../../gameManager";
+import { SuccesPopup } from "../SuccesPopup/SuccesPopup";
+
 
 export type Answer = {
     answer: string,
@@ -26,11 +29,33 @@ export type Question = {
 
 export const QuestionAndAnswers = () => {
     const dispatch = useDispatch()
-    const range = useSelector((state: RootState) => state.range);
     const questionData = useSelector((state: RootState) => state.currentQuestion)
+    const availableQuestions = useSelector((state: RootState) => state.availableQuestions)
+    const level = useSelector((state: RootState) => state.level)
+    const [succesVisible, setSuccesVisible] = useState(false)
+    const rank = useSelector((state: RootState) => state.rank)
+    function drawQuestion(questions: Question[]) {
+        const multiplier = questions.length
+        const idx = Math.floor(Math.random() * multiplier);
+        return questions[idx]
+    }
 
     function checkAnswer(answer: Answer) {
-        answer.correct && dispatch(goodAnswer(range)) && console.log("goodAnswer")
+        if (answer.correct) {
+            dispatch(goodAnswer())
+            const questions = availableQuestions.filter(question => question.level.includes(level))
+            if (questions.length !== 0) {
+                const question = drawQuestion(questions)
+                dispatch(nextQuestion(question))
+
+            }
+            setSuccesVisible(true)
+        }
+    }
+
+    function handleSuccesPopupButtonClick() {
+        dispatch(goodAnswer())
+        setSuccesVisible(false)
     }
 
     return <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
@@ -43,6 +68,7 @@ export const QuestionAndAnswers = () => {
         </div>
         {
             questionData && <>
+                <SuccesPopup visible={succesVisible} goForward={handleSuccesPopupButtonClick} rank={rank} />
                 <div style={{ flex: 1, flexDirection: "row", display: "flex", margin: "5px" }}>
                     <div style={{ flex: 1, margin: "8px" }}> <Answer answerId="A" answer={questionData.answers.A} selectAnswer={() => checkAnswer(questionData.answers.A)} /></div>
                     <div style={{ flex: 1, margin: "8px" }}> <Answer answer={questionData.answers.B} answerId="B" selectAnswer={() => checkAnswer(questionData.answers.B)} /></div>

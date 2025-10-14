@@ -1,0 +1,77 @@
+[
+    {
+        "questionLevel": 1,
+        "name": "Pierwszy dzień na serwerze",
+        "guaranteedRank": false
+    },
+    {
+        "questionLevel": 2,
+        "name": "Już wiemy, że nie wszystko można pisać na generalu, jest gdzieś jakiś kanał od tego",
+        "guaranteedRank": true
+    },
+    {
+        "questionLevel": 3,
+        "name": "Szukamy kanałów tematycznych",
+        "guaranteedRank": false
+    },
+    {
+        "questionLevel": 4,
+        "name": "Musimy tworzyć wątki",
+        "guaranteedRank": false
+    },
+    {
+        "questionLevel": 5,
+        "name": "Wiemy o istnieniu forów, ale nie wiemy o co z tym chodzi",
+        "guaranteedRank": false
+    },
+    {
+        "questionLevel": 6,
+        "name": "Wykłócamy się na kanale sugestie-i-skargi",
+        "guaranteedRank": false
+    },
+    {
+        "questionLevel": 7,
+        "name": "Już rozumiemy do czego słyży kanał lubimy-się",
+        "guaranteedRank": true
+    },
+    {
+        "questionLevel": 8,
+        "name": "Rozeznani na serwerze",
+        "guaranteedRank": false
+    },
+    {
+        "questionLevel": 9,
+        "name": "Wiemy, że zaraz przyjdzie światłowstręt i będzie nas prosił o utworzenie wątku",
+        "guaranteedRank": false
+    },
+    {
+        "questionLevel": 10,
+        "name": "Wiemy, że utworzenie wątku to zamknięcie się w grupie dwóch osób",
+        "guaranteedRank": false
+    },
+    {
+        "questionLevel": 11,
+        "name": "Mamy rolę @dyskutant",
+        "guaranteedRank": false
+    },
+    {
+        "questionLevel": 12,
+        "name": "Specjaliści serwera",
+        "guaranteedRank": false
+    },
+    {
+        "questionLevel": 13,
+        "name": "Znamy już wielu użytkowników serwera i kojarzymy ich z ich zainteresowaniami i poglądami",
+        "guaranteedRank": false
+    },
+    {
+        "questionLevel": 14,
+        "name": "Znamy już różnicę między wkurza-mnie a venty-i-narzekanie",
+        "guaranteedRank": false
+    },
+    {
+        "questionLevel": 15,
+        "name": "Eksperci serwera",
+        "guaranteedRank": true
+    }
+]

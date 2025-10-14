@@ -1,25 +1,20 @@
 import {type Question} from "./components/QuestionAndAnswers/QuestionAndAnswers"
 import { configureStore } from "@reduxjs/toolkit";
 import data from "./questions.json"
+import ranksData from "./ranks.json"
 
-type Range = {
+export type Rank = {
   questionLevel: number,
-  name: string
+  name: string,
+  guaranteedRank: boolean
 }
 
 type Action =
-  | { type: 'setQuestion', payload: Question }
-  | { type: "goodAnswer", payload: Range }
-  | { type: "guaranteedRangeAchived", payload: Range }
+  | { type: 'nextQuestion', payload: Question }
+  | { type: "goodAnswer" }
+  | { type: "guaranteedRangeAchived", payload: Rank }
 
-const levels: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
-
-const ranges: Range[] = levels.map(level => {
-  return {
-    questionLevel: level,
-    name: "jakaś tam ranga"
-  }
-})
+const ranks: Rank[] = ranksData
 
 let questions = data
 
@@ -38,41 +33,39 @@ function findQuestion(level: number): Question | undefined {
     const initialState = {
     availableQuestions: questions,
     currentQuestion: findQuestion(1),
-    range: ranges[1],
-    level: 1,
-    guaranteedRange: ranges[0]
+    rank: ranks[1],
+    level: 1
   }
 
-  export const store = configureStore({
-  reducer
-});
-  export function reducer(state = initialState, action: Action) {
+
+  export const reducer=(state = initialState, action: Action) => {
     switch (action.type) {
-      case "setQuestion":
+      case "nextQuestion":
         return { ...state, currentQuestion: action.payload, availableQuestions: state.availableQuestions.filter(question => question.id !== action.payload.id) }
       case "goodAnswer":
-        return { ...state, range: action.payload, level: state.level + 1 }
+        return { ...state, rank: ranks.find(range => range.questionLevel === state.level+1) ?? state.rank, level: state.level + 1 }
       case "guaranteedRangeAchived":
         return { ...state, guaranteedRange: action.payload }
       default: return state
     }
   }
 
-  export  function setQuestion(question: Question) {
+    export const store = configureStore({reducer});
+
+  export  function nextQuestion(question: Question) {
     return {
-      type: "setQuestion",
+      type: "nextQuestion",
       payload: question
     }
   }
 
-  export function goodAnswer(range: Range) {
+  export function goodAnswer() {
     return {
       type: "goodAnswer",
-      payload: range
     }
   }
 
-  export function guaranteedRangeAchived(range: Range
+  export function guaranteedRangeAchived(range: Rank
   ) {
     return {
       type: "guaranteedRangeAchived",
@@ -80,7 +73,5 @@ function findQuestion(level: number): Question | undefined {
     }
   }
 
-export type RootState = ReturnType<typeof store.getState>;
-    // <button onClick={() => dispatch(increment())}>Count +1</button>
 
-// 2, 7 pytanie gwarantowane
+export type RootState = ReturnType<typeof store.getState>;
