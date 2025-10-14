@@ -7,8 +7,6 @@ import { StartScreen } from './components/StartScreen/StartScreen'
 function App() {
   const [startScreen, setStartScreen] = useState(true)
   return startScreen ? <StartScreen nextPage={() => setStartScreen(false)} /> : <QuestionAndAnswers />
-
-
 }
 
 export default App
