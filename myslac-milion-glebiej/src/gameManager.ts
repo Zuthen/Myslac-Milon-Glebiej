@@ -8,13 +8,12 @@ type Range = {
 }
 
 type Action =
-  | { type: 'setQuestion', payload: Question }
-  | { type: "goodAnswer", payload: Range }
+  | { type: 'nextQuestion', payload: Question }
+  | { type: "goodAnswer" }
   | { type: "guaranteedRangeAchived", payload: Range }
 
 const levels: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
-
-const ranges: Range[] = levels.map(level => {
+export const ranges: Range[] = levels.map(level => {
   return {
     questionLevel: level,
     name: "jakaś tam ranga"
@@ -43,32 +42,31 @@ function findQuestion(level: number): Question | undefined {
     guaranteedRange: ranges[0]
   }
 
-  export const store = configureStore({
-  reducer
-});
-  export function reducer(state = initialState, action: Action) {
+
+  export const reducer=(state = initialState, action: Action) => {
     switch (action.type) {
-      case "setQuestion":
+      case "nextQuestion":
         return { ...state, currentQuestion: action.payload, availableQuestions: state.availableQuestions.filter(question => question.id !== action.payload.id) }
       case "goodAnswer":
-        return { ...state, range: action.payload, level: state.level + 1 }
+        return { ...state, range: ranges.find(range => range.questionLevel === state.level+1) ?? state.range, level: state.level + 1 }
       case "guaranteedRangeAchived":
         return { ...state, guaranteedRange: action.payload }
       default: return state
     }
   }
 
-  export  function setQuestion(question: Question) {
+    export const store = configureStore({reducer});
+
+  export  function nextQuestion(question: Question) {
     return {
-      type: "setQuestion",
+      type: "nextQuestion",
       payload: question
     }
   }
 
-  export function goodAnswer(range: Range) {
+  export function goodAnswer() {
     return {
       type: "goodAnswer",
-      payload: range
     }
   }
 
@@ -79,6 +77,7 @@ function findQuestion(level: number): Question | undefined {
       payload: range
     }
   }
+
 
 export type RootState = ReturnType<typeof store.getState>;
     // <button onClick={() => dispatch(increment())}>Count +1</button>
