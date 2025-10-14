@@ -3,7 +3,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import data from "./questions.json"
 import ranksData from "./ranks.json"
 
-type Rank = {
+export type Rank = {
   questionLevel: number,
   name: string,
   guaranteedRank: boolean

@@ -1,9 +1,31 @@
+import type { Rank } from "../../gameManager";
+
+type RankMessageProps = {
+    rankName: string
+}
+
+const GuaranteedRankMessage = ({ rankName }: RankMessageProps) => {
+    return <span><b>Zdobywacie rangę gwarantowaną: </b>{rankName}</span>
+}
+
+const RankMessage = ({ rankName }: RankMessageProps) => {
+    return <span>
+        <b>Zdobywacie rangę: </b>
+        {rankName}
+        <br />
+        <br />
+        To nie jest ranga gwarantowana
+    </span>
+}
+
 type Props = {
     goForward: () => void;
     visible: boolean;
+    rank: Rank;
 };
 
-export const SuccesPopup = ({ visible, goForward }: Props) => {
+
+export const SuccesPopup = ({ visible, goForward, rank }: Props) => {
     if (!visible) return null;
 
     return (
@@ -42,9 +64,9 @@ export const SuccesPopup = ({ visible, goForward }: Props) => {
             >
                 <h3>Poprawna odpowiedź!</h3>
                 <p>
-                    <b>Zdobywacie rangę:</b> Pierwszy dzień na serwerze!
-                    <br />
-                    (to nie jest ranga gwarantowana)
+                    {
+                        rank.guaranteedRank ? <GuaranteedRankMessage rankName={rank.name} /> : <RankMessage rankName={rank.name} />
+                    }
                 </p>
                 <button
                     style={{ margin: "15px", borderColor: "#483120", color: "#483120" }}
