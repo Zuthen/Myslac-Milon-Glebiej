@@ -5,6 +5,7 @@ import { Question } from "../../components/Question/Question"
 import { SuccesPopup } from "../../components/SuccesPopup/SuccesPopup";
 import { type Answer as AnswerType } from "../../types"
 import { Answer } from "../../components/Answer/Answer";
+import { useNavigate } from "react-router-dom";
 
 export const QuestionAndAnswers = () => {
     const dispatch = useDispatch()
@@ -12,13 +13,12 @@ export const QuestionAndAnswers = () => {
     const level = useSelector((state: RootState) => state.level)
     const [succesVisible, setSuccesVisible] = useState(false)
     const rank = useSelector((state: RootState) => state.rank)
+    const navigate = useNavigate()
 
     function checkAnswer(answer: AnswerType) {
-        if (answer.correct) {
-
-            setSuccesVisible(true)
-        }
+        answer.correct ? setSuccesVisible(true) : navigate("/game-over")
     }
+
 
     function handleSuccesPopupButtonClick() {
         dispatch(levelAndRankUp())

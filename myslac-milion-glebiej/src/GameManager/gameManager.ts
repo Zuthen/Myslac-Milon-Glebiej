@@ -26,6 +26,7 @@ type Action =
   | { type: 'nextQuestion', payload: number }
   | { type: "levelAndRankUp"}
   | { type: "removeQuestionFromList", payload:string}
+  | {type: "restart"}
 
 const ranks: Rank[] = ranksData
 
@@ -49,15 +50,25 @@ function findQuestion(level: number): Question | undefined {
     level: 1
   }
 
+ export function createInitialState(questions = data, ranks = ranksData) {
+  return {
+    availableQuestions: [...questions],
+    currentQuestion: findQuestion(1),
+    rank: ranks[0],
+    level: 1
+  }
+}
 
   export const reducer=(state = initialState, action: Action) => {
     switch (action.type) {
       case "nextQuestion":
-        return { ...state, currentQuestion: findQuestion(state.level)}
+        return { ...state, currentQuestion: findQuestion(state.level) }
       case "levelAndRankUp":
-        return {...state, level: state.level + 1, rank:ranks[state.level]}
+        return { ...state, level: state.level + 1, rank: ranks[state.level] }
       case "removeQuestionFromList":
-        return {...state, availableQuestions: state.availableQuestions.filter(question => question.id !== action.payload)} 
+        return { ...state, availableQuestions: [...state.availableQuestions].filter(question => question.id !== action.payload) }
+      case "restart":
+        return createInitialState();
       default: return state
     }
   }
@@ -79,6 +90,11 @@ function findQuestion(level: number): Question | undefined {
     return{
       type: "removeQuestionFromList",
       payload:id
+    }
+  }
+    export function restart() {
+    return {
+      type: "restart",
     }
   }
 
