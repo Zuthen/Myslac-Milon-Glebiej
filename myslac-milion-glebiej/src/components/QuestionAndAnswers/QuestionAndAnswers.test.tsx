@@ -1,7 +1,7 @@
 import { render } from "@testing-library/react"
 import { QuestionAndAnswers } from "./QuestionAndAnswers"
 import { Provider } from "react-redux";
-import { store } from "../../gameManager"
+import { store } from "../../GameManager/gameManager"
 
 describe("Question And Answers", () => {
     it("should contain question and all answers", () => {

@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { useDispatch, useSelector } from "react-redux";
-import { goodAnswer, nextQuestion, type RootState } from "../../gameManager";
+import { levelAndRankUp, nextQuestion, removeQuestionFromList, type RootState } from "../../GameManager/gameManager";
 import { Question } from "../Question/Question"
 import { Answer } from "../Answer/Answer"
 import { SuccesPopup } from "../SuccesPopup/SuccesPopup";
@@ -30,31 +30,21 @@ export type Question = {
 export const QuestionAndAnswers = () => {
     const dispatch = useDispatch()
     const questionData = useSelector((state: RootState) => state.currentQuestion)
-    const availableQuestions = useSelector((state: RootState) => state.availableQuestions)
     const level = useSelector((state: RootState) => state.level)
     const [succesVisible, setSuccesVisible] = useState(false)
     const rank = useSelector((state: RootState) => state.rank)
-    function drawQuestion(questions: Question[]) {
-        const multiplier = questions.length
-        const idx = Math.floor(Math.random() * multiplier);
-        return questions[idx]
-    }
 
     function checkAnswer(answer: Answer) {
         if (answer.correct) {
-            dispatch(goodAnswer())
-            const questions = availableQuestions.filter(question => question.level.includes(level))
-            if (questions.length !== 0) {
-                const question = drawQuestion(questions)
-                dispatch(nextQuestion(question))
 
-            }
             setSuccesVisible(true)
         }
     }
 
     function handleSuccesPopupButtonClick() {
-        dispatch(goodAnswer())
+        dispatch(levelAndRankUp())
+        questionData && dispatch(removeQuestionFromList(questionData?.id))
+        dispatch(nextQuestion(level))
         setSuccesVisible(false)
     }
 
