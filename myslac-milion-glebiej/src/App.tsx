@@ -1,12 +1,17 @@
-import { useState } from 'react'
 import './App.css'
-import { QuestionAndAnswers } from './components/QuestionAndAnswers/QuestionAndAnswers'
-import { StartScreen } from './components/StartScreen/StartScreen'
+import { QuestionAndAnswers } from './pages/QuestionAndAnswers/QuestionAndAnswers'
+import { StartScreen } from './pages/StartScreen/StartScreen'
+import { GameOverScreen } from './pages/GameOverScreen/GameOverScreen'
+import { Routes, Route } from "react-router-dom";
 
 
 function App() {
-  const [startScreen, setStartScreen] = useState(true)
-  return startScreen ? <StartScreen nextPage={() => setStartScreen(false)} /> : <QuestionAndAnswers />
+
+  return <Routes>
+    <Route path='/' element={<StartScreen />} />
+    <Route path='/questions' element={<QuestionAndAnswers />} />
+    <Route path='/game-over' element={<GameOverScreen range='śwoeżal' />} />
+  </Routes>
 }
 
 export default App

@@ -1,5 +1,5 @@
 import { reducer } from "./gameManager"
-import type { Question } from "../components/QuestionAndAnswers/QuestionAndAnswers"
+import type { Question } from "../pages/QuestionAndAnswers/QuestionAndAnswers"
 import ranks from "./../ranks.json"
 import questions from "./../questions.json"
 

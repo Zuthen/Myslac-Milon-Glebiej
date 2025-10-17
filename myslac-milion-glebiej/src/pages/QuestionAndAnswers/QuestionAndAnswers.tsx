@@ -1,9 +1,9 @@
 import { useState } from "react"
 import { useDispatch, useSelector } from "react-redux";
 import { levelAndRankUp, nextQuestion, removeQuestionFromList, type RootState } from "../../GameManager/gameManager";
-import { Question } from "../Question/Question"
-import { Answer } from "../Answer/Answer"
-import { SuccesPopup } from "../SuccesPopup/SuccesPopup";
+import { Question } from "../../components/Question/Question"
+import { Answer } from "../../components/Answer/Answer"
+import { SuccesPopup } from "../../components/SuccesPopup/SuccesPopup";
 
 
 export type Answer = {

@@ -1,4 +1,4 @@
-import {type Question} from "../components/QuestionAndAnswers/QuestionAndAnswers"
+import {type Question} from "../pages/QuestionAndAnswers/QuestionAndAnswers"
 import { configureStore } from "@reduxjs/toolkit";
 import data from "../questions.json"
 import ranksData from "../ranks.json"
