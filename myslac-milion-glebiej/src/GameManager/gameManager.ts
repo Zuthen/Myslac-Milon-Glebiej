@@ -1,12 +1,25 @@
-import {type Question} from "../pages/QuestionAndAnswers/QuestionAndAnswers"
 import { configureStore } from "@reduxjs/toolkit";
 import data from "../questions.json"
 import ranksData from "../ranks.json"
+import type {Rank} from "../types"
 
-export type Rank = {
-  questionLevel: number,
-  name: string,
-  guaranteedRank: boolean
+ type Answer = {
+    answer: string,
+    correct: boolean
+}
+type Answers = {
+    A: Answer,
+    B: Answer,
+    C: Answer,
+    D: Answer
+}
+
+ type Question = {
+    id: string,
+    question: string,
+    level: number[],
+    answers: Answers,
+    why: string
 }
 
 type Action =

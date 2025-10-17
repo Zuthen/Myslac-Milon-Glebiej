@@ -1,9 +1,26 @@
 import { reducer } from "./gameManager"
-import type { Question } from "../pages/QuestionAndAnswers/QuestionAndAnswers"
-import ranks from "./../ranks.json"
 import questions from "./../questions.json"
+import ranks from "../ranks.json"
 
 describe("Game Manager", () => {
+    type Answer = {
+        answer: string,
+        correct: boolean
+    }
+    type Answers = {
+        A: Answer,
+        B: Answer,
+        C: Answer,
+        D: Answer
+    }
+    type Question = {
+        id: string,
+        question: string,
+        level: number[],
+        answers: Answers,
+        why: string
+    }
+
     const initialQuestions: Question[] = [{
         id: "1",
         question: "which answer is good?",

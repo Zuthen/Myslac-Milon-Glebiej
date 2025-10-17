@@ -2,30 +2,9 @@ import { useState } from "react"
 import { useDispatch, useSelector } from "react-redux";
 import { levelAndRankUp, nextQuestion, removeQuestionFromList, type RootState } from "../../GameManager/gameManager";
 import { Question } from "../../components/Question/Question"
-import { Answer } from "../../components/Answer/Answer"
 import { SuccesPopup } from "../../components/SuccesPopup/SuccesPopup";
-
-
-export type Answer = {
-    answer: string,
-    correct: boolean
-}
-type Answers = {
-    A: Answer,
-    B: Answer,
-    C: Answer,
-    D: Answer
-}
-
-export type Question = {
-    id: string,
-    question: string,
-    level: number[],
-    answers: Answers,
-    why: string
-}
-
-
+import { type Answer as AnswerType } from "../../types"
+import { Answer } from "../../components/Answer/Answer";
 
 export const QuestionAndAnswers = () => {
     const dispatch = useDispatch()
@@ -34,7 +13,7 @@ export const QuestionAndAnswers = () => {
     const [succesVisible, setSuccesVisible] = useState(false)
     const rank = useSelector((state: RootState) => state.rank)
 
-    function checkAnswer(answer: Answer) {
+    function checkAnswer(answer: AnswerType) {
         if (answer.correct) {
 
             setSuccesVisible(true)
