@@ -10,7 +10,7 @@ function App() {
   return <Routes>
     <Route path='/' element={<StartScreen />} />
     <Route path='/questions' element={<QuestionAndAnswers />} />
-    <Route path='/game-over' element={<GameOverScreen range='śwoeżal' />} />
+    <Route path='/game-over' element={<GameOverScreen />} />
   </Routes>
 }
 
