@@ -1,4 +1,9 @@
-[
+[{
+        "questionLevel": 0,
+        "name": "Nie zdobywacie żadnej rangi",
+        "guaranteedRank": true
+},
+
     {
         "questionLevel": 1,
         "name": "Pierwszy dzień na serwerze",

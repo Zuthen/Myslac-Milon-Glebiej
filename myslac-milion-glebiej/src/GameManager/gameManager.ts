@@ -27,6 +27,7 @@ type Action =
   | { type: "levelAndRankUp"}
   | { type: "removeQuestionFromList", payload:string}
   | {type: "restart"}
+  | {type: "guaranteedRank", payload: Rank}
 
 const ranks: Rank[] = ranksData
 
@@ -36,39 +37,61 @@ function getRandomInt(max: number) {
     return Math.floor(Math.random() * max);
   }
 
-// trzeba obsłużyć tego undefinda
-function findQuestion(level: number): Question | undefined {
+ const notFoundQuestion: Question = {
+    id: "00000000-0000-0000-0000-000000000000",
+    question: "Brak pytania", 
+    level: [0],
+    answers: {
+      A: { answer: "Brak odpowiedzi", correct: false }, 
+      B: { answer: "Brak odpowiedzi", correct: false },
+      C: { answer: "Brak odpowiedzi", correct: false },
+      D: { answer: "Brak odpowiedzi", correct: false }
+    },
+    why: "Brak powodu"
+  }
+
+function findQuestion(level: number): Question  {
     const questionsOfLevel = questions.filter(question => question.level.includes(level))
-    const foundQuestion = questionsOfLevel[getRandomInt(questionsOfLevel.length)]
-    return foundQuestion
+    if (questionsOfLevel.length === 0) return notFoundQuestion
+    return questionsOfLevel[getRandomInt(questionsOfLevel.length)]
   }
+  
+ 
 
-    const initialState = {
-    availableQuestions: questions,
-    currentQuestion: findQuestion(1),
-    rank: ranks[0],
-    level: 1
+  export function createInitialState(questions = data, ranks = ranksData) {
+    return {
+      availableQuestions: [...questions],
+      currentQuestion: findQuestion(1) ,
+      rank: ranks[1],
+      level: 1,
+      guaranteedRank: ranks[0]
+    }
   }
+  
+  const initialState = createInitialState();
 
- export function createInitialState(questions = data, ranks = ranksData) {
-  return {
-    availableQuestions: [...questions],
-    currentQuestion: findQuestion(1),
-    rank: ranks[0],
-    level: 1
-  }
-}
-
-  export const reducer=(state = initialState, action: Action) => {
+ type GameState = {
+  availableQuestions: Question[];
+  currentQuestion: Question
+  rank: Rank;
+  level: number;
+  guaranteedRank: Rank; 
+};
+  export const reducer=(state: GameState = initialState, action: Action):GameState => {
     switch (action.type) {
+      case "guaranteedRank":
+        return {...state, guaranteedRank: action.payload}
       case "nextQuestion":
         return { ...state, currentQuestion: findQuestion(state.level) }
-      case "levelAndRankUp":
-        return { ...state, level: state.level + 1, rank: ranks[state.level] }
+      case "levelAndRankUp": {
+        const newLevel = state.level + 1;
+        const newRank = ranks.find(r => r.questionLevel === newLevel) ?? state.rank;
+        return { ...state, level: newLevel, rank: newRank }
+      }
       case "removeQuestionFromList":
         return { ...state, availableQuestions: [...state.availableQuestions].filter(question => question.id !== action.payload) }
       case "restart":
-        return createInitialState();
+        return createInitialState()
       default: return state
     }
   }
@@ -97,5 +120,12 @@ function findQuestion(level: number): Question | undefined {
       type: "restart",
     }
   }
+
+    export function guaranteedRank(rank:Rank){
+      return {
+        type:"guaranteedRank",
+        payload: rank
+      }
+    }
 
 export type RootState = ReturnType<typeof store.getState>;
