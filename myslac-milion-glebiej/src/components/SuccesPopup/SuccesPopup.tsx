@@ -1,4 +1,4 @@
-import type { Rank } from "../../GameManager/gameManager";
+import type { Rank } from "../../types"
 
 type RankMessageProps = {
     rankName: string

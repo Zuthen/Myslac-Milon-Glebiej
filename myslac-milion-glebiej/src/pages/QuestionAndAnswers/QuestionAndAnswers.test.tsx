@@ -2,13 +2,16 @@ import { render } from "@testing-library/react"
 import { QuestionAndAnswers } from "./QuestionAndAnswers"
 import { Provider } from "react-redux";
 import { store } from "../../GameManager/gameManager"
+import { MemoryRouter } from "react-router-dom";
 
 describe("Question And Answers", () => {
     it("should contain question and all answers", () => {
         // Arrange
         const sut = render(
             <Provider store={store}>
-                <QuestionAndAnswers />
+                <MemoryRouter>
+                    <QuestionAndAnswers />
+                </MemoryRouter>
             </Provider>
         )
         const testQuestion = {

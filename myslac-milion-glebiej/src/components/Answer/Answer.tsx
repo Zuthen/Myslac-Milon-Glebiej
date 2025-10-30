@@ -1,5 +1,4 @@
-import type React from "react";
-import { type Answer as AnswerType } from "../QuestionAndAnswers/QuestionAndAnswers"
+import { type Answer as AnswerType } from "../../types"
 
 type Props = {
     answerId: string,
